@@ -19,6 +19,9 @@ jobs:
     if: github.event_name == 'push' || github.event_name == 'schedule'
     runs-on: ubuntu-latest
     steps:
+      - name: Installation depends
+        run: |
+          sudo apt-get update
       - name: Set current date as env variable
         run: echo "NOW=$(date --utc)" >> $GITHUB_ENV
       - uses: dev-drprasad/delete-tag-and-release@v0.2.1
@@ -112,3 +115,8 @@ jobs:
           name: aria2 ${{ env.ARIA2_VER }} static release
           body_path: "${{ github.workspace }}/build_info.md"
           append_body: true
+      - name : Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.ARCHIVE_NAME }}
+          path: /tmp/${{ env.ARCHIVE_NAME }}
