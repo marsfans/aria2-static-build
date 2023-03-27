@@ -50,8 +50,8 @@ jobs:
       fail-fast: false
       matrix:
         cross_host:
-#           - arm-linux-musleabi
-#           - aarch64-linux-musl
+          - arm-linux-musleabi
+          - aarch64-linux-musl
 #           - mips-linux-musl
 #           - mipsel-linux-musl
 #           - mips64-linux-musl
